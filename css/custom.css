@@ -5,10 +5,15 @@
   font-weight: normal;
   font-style: normal;
 }
+
 span#subtitle.h2 {
   font-family: "MaruBuri-Regular";
   color: #fff;
 }
 div#banner.banner {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+.about-content {
+  color: red;
 }
