@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>인텔리제이(IntelliJ) 프로젝트 오픈시 튕김 현상</title>
+    <link href="/2021/10/25/%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4-IntelliJ-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%98%A4%ED%94%88%EC%8B%9C-%ED%8A%95%EA%B9%80-%ED%98%84%EC%83%81/"/>
+    <url>/2021/10/25/%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4-IntelliJ-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%98%A4%ED%94%88%EC%8B%9C-%ED%8A%95%EA%B9%80-%ED%98%84%EC%83%81/</url>
+    
+    <content type="html"><![CDATA[<p>인프런에서 <strong>김영한</strong>님의 <a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8#"><strong>스프링 입문 강의</strong></a> 실습을 준비하던 도중 문제가 생겼습니다.</p><p>강의 초반부를 들으며 생긴 문제입니다.</p><blockquote><p>앞서 미리 말하자면 <strong>본 강의에서는 실습 환경으로 jdk 11버전을 권장</strong>합니다. 하지만 전 <strong>jdk 1.8(java 8)버전</strong>을 이용하여 실습을 시도했습니다. 학원에서 수업을 jdk 1.8(java 8) 환경으로 진행하기 때문이죠… ( <a href="https://start.spring.io/">spring initializr</a> 사이트에서도 Java 8 버전을 지원 하기는 합니다.)</p></blockquote><h1 id="인텔리제이가-팅겨요"><a href="#인텔리제이가-팅겨요" class="headerlink" title="인텔리제이가 팅겨요"></a>인텔리제이가 팅겨요</h1><p>문제 발생. 근데 이유를 모릅니다. 그냥 팅깁니다. 과정도 없습니다 그냥 갑자기 냅다 Open Project 가 안됩니다.</p><p> <a href="https://start.spring.io/">spring initializr</a>에서 스프링 부트 패키지를 다운받고, zip파일을 푼 후 인텔리제이에서 Open Project 로 프로젝트를 열어 빌드 하려고 했습니다.</p><p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ef3c05b8-e1cc-4c4c-9860-30c7fffbe62b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211025/us-west-2/s3/aws4_request&X-Amz-Date=20211025T050231Z&X-Amz-Expires=86400&X-Amz-Signature=4920cdca5141e67a514663a6498313ff4fc0867cbd7e5a356678394f705797fe&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" alt="어이없게 생긴 코끼리 아이콘을 빌드해와야 합니다."></p><p>저기 생긴 밋밋한 코끼리 모양 친구(<strong>gradle</strong>라는 버전 관리를 돕는 친구래요)를 열어 build하려 하는데…</p><p>또잉.</p><h2 id="냅다-튕김"><a href="#냅다-튕김" class="headerlink" title="냅다 튕김."></a>냅다 튕김.</h2><p>이 과정을 스크린샷으로 찍을 새도 없이 그냥 냅다. <strong>튕겼습니다.</strong><br>cmd 창을 켜서 확인해보았으나 log에도 남지 않았어요.</p><h3 id="버전이-문제-아님-삽질임"><a href="#버전이-문제-아님-삽질임" class="headerlink" title="버전이 문제? (아님. 삽질임)"></a>버전이 문제? (아님. 삽질임)</h3><p>혹시나 내가 괜히 권장버전이 아니라 구버전을 사용하려 해서 <strong>버전 충돌</strong>이 일어난 건가? 하며,</p><p>저는 그만 <strong>Java (jdk) 버전을 1.8 =&gt; 11로 변경</strong>하기 위한 여정을 떠나버리고야 말았습니다.</p><h4 id="버전-변경-삽질-과정"><a href="#버전-변경-삽질-과정" class="headerlink" title="버전 변경 삽질 과정"></a>버전 변경 삽질 과정</h4><ol><li><a href="https://start.spring.io/">https://start.spring.io/</a> 홈페이지에서 프로젝트를 jdk 11 버전으로 새로 생성하여 다운로드 하고, </li><li>기존 jdk도 oracle에서 11 버전으로 새로 다운 받고 </li><li>환경변수를 다시 셋팅하고</li><li>기도문을 올리고</li><li>무녀복 입고 기도하고</li></ol><p>등등등… 오만난리사우루스를 피웠으나…</p><p>여전히 튕겼습니다!</p><p>아!</p><p>진짜 왜 이럴까? xxx끼…<br>도무지 이유를 찾을 수 없어서 세상을 향해 <em><strong>凸</strong></em> 라도 날리고 싶었습니다! … 결국 지인에게 원격으로 도움 요청을 하여 해결하게 되었습니다. (새벽 1시 반에… 너무나 감사하고 죄송한)</p><h2 id="결국-원인은"><a href="#결국-원인은" class="headerlink" title="결국 원인은?"></a>결국 원인은?</h2><p>jdk 버전 문제가 아니었습니다.<br>원인은 바로 인텔리제이의 <strong>플러그인 충돌 문제</strong>였습니다.</p><p>사실은 처음에 다른 지인분께서 <em>“아무래도 플러그인 충돌 문제 같아요.”</em> 라고 조언 해주었는데… </p><p><em><strong>례?? 플러?그?인??그런?거? 깐 적 없는데 그?럴리가!?</strong></em></p><p>하는 안일한 맘으로 플러그인 설정을 쳐다볼 생각도 못했습니다. (제발 사람이 하는 말을 잘 들읍시다.)</p><p>원인을 알고 나니 억울해서 미춰버릴 뻔했습니다. 저는 정말 플러그인 설정을 건드린 적도 없었고요. 애초에 플러?그?인?? 그게 먼?? 몰??루 였고요. 그냥 인텔리제이를 설치하자마자 Oepn Project 한 게 다인데…</p><p>아무래도 인텔리제이의 가장 <strong>최신 버전(2021.2.3v)</strong> 을 다운한 게 화근이었던 모양입니다. (나온지 2주도 안 된 따끈따끈한 녀석이더라구요.)</p><p>그래요. 어째서인지 <strong>최신버전의 인텔리제이가 실행되면서 플러그인이 모두 자동으로 Enabled 되어버렸고,<br>그 중 하필 충돌이 일어나는 플러그인들까지 모두 Enabled 되어버려 프로젝트가 열리지 않았던 것입니다!</strong> (두둥! 세상에나 기가막혀라)</p><h2 id="그리하여-해결법"><a href="#그리하여-해결법" class="headerlink" title="그리하여 해결법"></a>그리하여 해결법</h2><ol><li>인텔리제이 왼쪽 상단의 <code>Files</code> </li><li>-&gt; <code>settings</code>탭 </li><li>-&gt; <code>plugin</code>에 들어간 후</li><li>Installed 된 플러그인들을 <strong>Disable all</strong> 해주고</li><li>다시 <strong>Enabled all</strong> 해주었습니다 </li><li>그러면 알아서 충돌이 나는 플러그인을 잡아서 <em>“얘 충돌난단다!”</em> 하는 오류 메세지 창이 뜹니다. </li><li><strong>오류가 나는 플러그인을 Disable</strong> 해주면 오류 해결! </li></ol><p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/00afca25-9550-4a5e-9129-c9c5ba7d2f37/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211025/us-west-2/s3/aws4_request&X-Amz-Date=20211025T055857Z&X-Amz-Expires=86400&X-Amz-Signature=c13b9a5facb60f03f5b47cdb5030adc7698d980032c7bef20336378d71eb87e8&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" alt="이것도 제가 아니라 멋쟁이 지인분께서 뚝딱똑딱 해주셨고, 저는 그저 천재와 방탈출카페를 간 바보처럼 화면을 바라보며 박수를 쳤습니당 와항하"></p><hr><p><img src="https://pbs.twimg.com/media/EQ-FctrVAAAsiGt.jpg" alt="아무튼 해결."></p><p>모든 인텔리제이 최신 버전에서 이런 문제(자동으로 플러그인이 모두 활성화되는 겁나 어이없는 일)가 일어나는지는 모르겠습니다. 아무튼 저에게는 일어났고 저는 개킹받았거든요… 그래서 포스팅을 꼭 하고 싶었습니다.</p><blockquote><p>혹시나 저처럼 도대체 어떠한 이유로 튕겼는지 도무지 모를 때<br><strong>플러그인을 의심</strong>해봅시다. </p></blockquote><p>플러그인이 아니라면 인텔리제이의 버전 업데이트일을 확인해보고 그 이전 버전을 다운로드 해봅시다. <del>그래도 안되면 주변 사람을 붙잡고 울어봅시다</del> </p><h2 id="오늘의-교훈"><a href="#오늘의-교훈" class="headerlink" title="오늘의 교훈"></a>오늘의 교훈</h2><ol><li>구관이 명관이다</li><li>도저히 모르겠으면 울 시간에 질문하자. (흰 천과 바람이 있으면 항복을 할 수 있어요. 항해가 아니고.)</li></ol><p>아무튼 행복하세요. 꾸벅.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>Spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>공부</tag>
+      
+      <tag>스프링</tag>
+      
+      <tag>삽질</tag>
+      
+      <tag>버그</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>버텨내는 삶에 대하여</title>
     <link href="/2021/10/20/%EB%B2%84%ED%85%A8%EB%82%B4%EB%8A%94-%EC%82%B6%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC/"/>
     <url>/2021/10/20/%EB%B2%84%ED%85%A8%EB%82%B4%EB%8A%94-%EC%82%B6%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC/</url>
@@ -42,7 +75,9 @@
     
     <categories>
       
-      <category>Java Basic</category>
+      <category>Java</category>
+      
+      <category>Basic</category>
       
     </categories>
     
