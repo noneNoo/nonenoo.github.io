@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="noneno">
+  <meta name="keywords" content="">
+  <meta name="description" content="스프링부트 spring-boot-devtools 라이브러리 사용, 정적 탬플릿의 편리한 갱신.저는 오늘도 김영한님의 스프링부트 입문 강의 를 공부하고 있습니다. 스프링부트에서 Thymeleaf와 같은 View 템플릿 엔진을 사용할 시 정적 리소스의 갱신을 확인하려면 매번 웹서버를 종료했다가 다시 빌드해와야만 합니다. 이 작업은 굉장히 오래걸리고 귀찮아서 자">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-boot-devtools 라이브러리 추가(인텔리제이 2021 2.2v)">
+<meta property="og:url" content="http://example.com/2021/10/27/spring-boot-devtools-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%B6%94%EA%B0%80-%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4-2021-2-2v/index.html">
+<meta property="og:site_name" content="Sweet-JamJar">
+<meta property="og:description" content="스프링부트 spring-boot-devtools 라이브러리 사용, 정적 탬플릿의 편리한 갱신.저는 오늘도 김영한님의 스프링부트 입문 강의 를 공부하고 있습니다. 스프링부트에서 Thymeleaf와 같은 View 템플릿 엔진을 사용할 시 정적 리소스의 갱신을 확인하려면 매번 웹서버를 종료했다가 다시 빌드해와야만 합니다. 이 작업은 굉장히 오래걸리고 귀찮아서 자">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/02522f01-6627-4fb6-a194-8ce0274036c6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T091538Z&X-Amz-Expires=86400&X-Amz-Signature=50457f2e7f0163a4d2f9b5aa04f13e5c6003b67bf97a6dbfcc6e063bd8a5701a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22">
+<meta property="og:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b8f6b37a-54bc-4b0b-b4a7-561906497ec5/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T091826Z&X-Amz-Expires=86400&X-Amz-Signature=d0e6e3d1913def75bc9ef5513eadc91a57ca9e0de44fe8fd2b4f90df8e7e629a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22">
+<meta property="og:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b655d4cf-4811-45c6-a41a-2da6beb69589/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T094231Z&X-Amz-Expires=86400&X-Amz-Signature=b8ae3a8d9a1390ceccae8f3c6fc95c46609e454da2230accf0b865626d6b4f9f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22">
+<meta property="og:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d34d63ac-5e26-442d-9133-d6989c5e0b05/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T093300Z&X-Amz-Expires=86400&X-Amz-Signature=d8949cad4b9fa0249323899605f366ed69c44ac2cdb231227a90e286def6f160&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22">
+<meta property="article:published_time" content="2021-10-27T09:40:38.000Z">
+<meta property="article:modified_time" content="2021-10-27T09:45:10.800Z">
+<meta property="article:author" content="noneno">
+<meta property="article:tag" content="공부">
+<meta property="article:tag" content="스프링">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/02522f01-6627-4fb6-a194-8ce0274036c6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T091538Z&X-Amz-Expires=86400&X-Amz-Signature=50457f2e7f0163a4d2f9b5aa04f13e5c6003b67bf97a6dbfcc6e063bd8a5701a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22">
+  
+  <title>spring-boot-devtools 라이브러리 추가(인텔리제이 2021 2.2v) - Sweet-JamJar</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Noneno&#39;s JamJar</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="spring-boot-devtools 라이브러리 추가(인텔리제이 2021 2.2v)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      noneno
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-27 18:40" pubdate>
+        October 27, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">spring-boot-devtools 라이브러리 추가(인텔리제이 2021 2.2v)</h1>
+            
+            <div class="markdown-body">
+              <h1 id="스프링부트-spring-boot-devtools-라이브러리-사용-정적-탬플릿의-편리한-갱신"><a href="#스프링부트-spring-boot-devtools-라이브러리-사용-정적-탬플릿의-편리한-갱신" class="headerlink" title="스프링부트 spring-boot-devtools 라이브러리 사용, 정적 탬플릿의 편리한 갱신."></a>스프링부트 spring-boot-devtools 라이브러리 사용, 정적 탬플릿의 편리한 갱신.</h1><p>저는 오늘도 <strong>김영한님의 <a target="_blank" rel="noopener" href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/">스프링부트 입문 강의</a></strong> 를 공부하고 있습니다.</p>
+<p>스프링부트에서 <strong>Thymeleaf</strong>와 같은 View 템플릿 엔진을 사용할 시 정적 리소스의 갱신을 확인하려면 매번 웹서버를 종료했다가 다시 빌드해와야만 합니다. 이 작업은 굉장히 오래걸리고 귀찮아서 자꾸만 핸드폰을 보게 됩니다.</p>
+<p>다행히도 강의중 강사님께서 <strong><code>spring-boot-devtools</code> 라는 스프링부트의 라이브러리</strong>를 소개해주셨습니다.</p>
+<p> <code>spring-boot-devtools</code> 라는 라이브러리를 사용하면, html 파일 일부를 수정할 때마다 서버를 다시 빌드할 필요 없이, 그냥 <strong>build=&gt;recompile</strong> 만 해주면 뚝딱 수정 사항이 반영이 된다고 합니다.</p>
+<h2 id="라이브러리-적용법"><a href="#라이브러리-적용법" class="headerlink" title="라이브러리 적용법"></a>라이브러리 적용법</h2><p> 라이브러리를 추가하기 위해 build.gradle 파일을 준비해줍니다.</p>
+<ol>
+<li><code>build.gradle</code> 에 의존성 추가하기 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">dependencies &#123;  <br>	...<br>  implementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-devtools&#x27;</span>  <br>	...<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>인텔리제이 설정에서 compiler.automake.allow.when.app.running 설정을 체크합니다.<br> 설정은 <code>File =&gt; Setting =&gt; Advanced Settings</code> 탭에서 <code>Compiler</code> (가장 상단에 있습니다.) 에서 해주시면 됩니다. 제 역동적인 붉은 동그라미를 따라서 체크해주세요.<br> <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/02522f01-6627-4fb6-a194-8ce0274036c6/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T091538Z&X-Amz-Expires=86400&X-Amz-Signature=50457f2e7f0163a4d2f9b5aa04f13e5c6003b67bf97a6dbfcc6e063bd8a5701a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" srcset="/img/loading.gif" lazyload alt="역동적인 붉은 동그라미 주목"><br> 여담이지만 기존에는 <code>Ctrl + Shift + A</code> 로  <code>Registry</code> 를 검색하여 설정을 해주면 되었는데요, 이번에 <strong>인텔리제이가 최신 버전으로 업데이트 되면서 Registry의 compiler.automake.allow.when.app.running 항목이 사라졌습니다.</strong> 여기로 이사했대요. </li>
+<li>이제 여기서 리컴파일 작업만 해주면, 별도로 빌드 없이 hello.html의 변경사항이 잘 반영되는 것을 확인할 수 있습니다. 아주 빠릅니다. 굿.<br> <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b8f6b37a-54bc-4b0b-b4a7-561906497ec5/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T091826Z&X-Amz-Expires=86400&X-Amz-Signature=d0e6e3d1913def75bc9ef5513eadc91a57ca9e0de44fe8fd2b4f90df8e7e629a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" srcset="/img/loading.gif" lazyload alt="단축키 Ctrl Shif F9를 이용하면 더 빠르겠지요"> <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b655d4cf-4811-45c6-a41a-2da6beb69589/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T094231Z&X-Amz-Expires=86400&X-Amz-Signature=b8ae3a8d9a1390ceccae8f3c6fc95c46609e454da2230accf0b865626d6b4f9f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" srcset="/img/loading.gif" lazyload alt="멋져"></li>
+</ol>
+<hr>
+<h3 id="여담"><a href="#여담" class="headerlink" title="여담."></a>여담.</h3><p>JSP 책을 주섬주섬 읽으며 스프링 강의도 들으니 새롭습니다. 스프링 강의에선 JSP 기술을 아주 옛날 옛적 고대의 개발자분들의 어쩌구기술로 묘사를 해서 좀 재밌습니다. 이 둘을 동시에 배우자니 마치 현대와 고대를 뛰어넘는 시공간초월 오타쿠 개발자가 된 것 같습니다. 현실은 그냥 오타쿠입니다…</p>
+<p>마칠게요. 행복하세요<br><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d34d63ac-5e26-442d-9133-d6989c5e0b05/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5/20211027/us-west-2/s3/aws4_request&X-Amz-Date=20211027T093300Z&X-Amz-Expires=86400&X-Amz-Signature=d8949cad4b9fa0249323899605f366ed69c44ac2cdb231227a90e286def6f160&X-Amz-SignedHeaders=host&response-content-disposition=filename%20=%22Untitled.png%22" srcset="/img/loading.gif" lazyload alt="헤헤"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/Spring/">Spring</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%EA%B3%B5%EB%B6%80/">공부</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%EC%8A%A4%ED%94%84%EB%A7%81/">스프링</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/25/%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4-IntelliJ-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%98%A4%ED%94%88%EC%8B%9C-%ED%8A%95%EA%B9%80-%ED%98%84%EC%83%81/">
+                        <span class="hidden-mobile">인텔리제이(IntelliJ) 프로젝트 오픈시 튕김 현상</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://nonenoo.github.io/about" target="_blank" rel="nofollow noopener"><span>Noneno</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/noneNoo" target="_blank" rel="nofollow noopener"><span>Github</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
